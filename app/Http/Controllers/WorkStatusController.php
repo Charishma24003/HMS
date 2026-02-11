@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Models\WorkStatus;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class WorkStatusController extends Controller
+{
+    public function index()
+    {
+        $workStatuses = WorkStatus::latest()->get();
+        return view('masters.work_status.index', compact('workStatuses'));
+    }
+
+    public function create()
+    {
+        return view('masters.work_status.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'work_status_name' => 'required|max:100|unique:work_status_master',
+            'status' => 'required'
+        ]);
+
+        WorkStatus::create([
+            'work_status_name' => $request->work_status_name,
+            'status' => $request->status,
+            'created_by' => 1
+        ]);
+
+        return redirect()->route('work-status.index')
+            ->with('success', 'Work Status added successfully');
+    }
+
+    public function edit($id)
+    {
+        $workStatus = WorkStatus::findOrFail($id);
+        return view('masters.work_status.edit', compact('workStatus'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'work_status_name' => "required|max:100|unique:work_status_master,work_status_name,$id",
+            'status' => 'required'
+        ]);
+
+        $workStatus = WorkStatus::findOrFail($id);
+
+        $workStatus->update([
+            'work_status_name' => $request->work_status_name,
+            'status' => $request->status,
+            'updated_by' => 1
+        ]);
+
+        return redirect()->route('work-status.index')
+            ->with('success', 'Work Status updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $workStatus = WorkStatus::findOrFail($id);
+        $workStatus->delete();
+
+        return redirect()->route('work-status.index')
+            ->with('success', 'Work Status deleted successfully');
+    }
+
+    public function trash()
+    {
+        $workStatuses = WorkStatus::onlyTrashed()->get();
+        return view('masters.work_status.trash', compact('workStatuses'));
+    }
+
+    public function restore($id)
+    {
+        WorkStatus::withTrashed()->findOrFail($id)->restore();
+        return redirect()->route('work-status.trash')
+            ->with('success', 'Work Status restored');
+    }
+
+    public function forceDelete($id)
+    {
+        WorkStatus::withTrashed()->findOrFail($id)->forceDelete();
+        return redirect()->route('work-status.trash')
+            ->with('success', 'Work Status removed permanently');
+    }
+}
