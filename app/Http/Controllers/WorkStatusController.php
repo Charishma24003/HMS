@@ -23,15 +23,19 @@ class WorkStatusController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'work_status_name' => 'required|max:100|unique:work_status_master',
-            'status' => 'required'
-        ]);
+    'work_status_code' => 'required|max:50|unique:work_status_master',
+    'work_status_name' => 'required|max:100',
+    'status' => 'required'
+]);
 
-        WorkStatus::create([
-            'work_status_name' => $request->work_status_name,
-            'status' => $request->status,
-            'created_by' => 1
-        ]);
+WorkStatus::create([
+    'work_status_code' => $request->work_status_code,
+    'work_status_name' => $request->work_status_name,
+    'description'      => $request->description,
+    'status'           => $request->status,
+    'created_by'       => 1
+]);
+
 
         return redirect()->route('work-status.index')
             ->with('success', 'Work Status added successfully');
@@ -46,17 +50,19 @@ class WorkStatusController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'work_status_name' => "required|max:100|unique:work_status_master,work_status_name,$id",
-            'status' => 'required'
-        ]);
+    'work_status_code' => "required|max:50|unique:work_status_master,work_status_code,$id",
+    'work_status_name' => 'required|max:100',
+    'status' => 'required'
+]);
 
-        $workStatus = WorkStatus::findOrFail($id);
+$workStatus->update([
+    'work_status_code' => $request->work_status_code,
+    'work_status_name' => $request->work_status_name,
+    'description'      => $request->description,
+    'status'           => $request->status,
+    'updated_by'       => 1
+]);
 
-        $workStatus->update([
-            'work_status_name' => $request->work_status_name,
-            'status' => $request->status,
-            'updated_by' => 1
-        ]);
 
         return redirect()->route('work-status.index')
             ->with('success', 'Work Status updated successfully');

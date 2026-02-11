@@ -28,12 +28,25 @@
                             @csrf
 
                             <div class="mb-4">
-                                <label class="form-label">
-                                    Job Type Name <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" name="job_type_name" class="form-control"
-                                       placeholder="Enter job type name">
-                            </div>
+    <label class="form-label">
+        Job Type Code <span class="text-danger">*</span>
+    </label>
+    <input type="text" name="job_type_code" class="form-control"
+        placeholder="Enter job type code">
+</div>
+
+<div class="mb-4">
+    <label class="form-label">Job Type Name</label>
+    <input type="text" name="job_type_name" class="form-control"
+        placeholder="Enter job type name">
+</div>
+
+<div class="mb-4">
+    <label class="form-label">Description</label>
+    <textarea name="description" class="form-control"
+        placeholder="Enter description"></textarea>
+</div>
+
 
                             <div class="mb-4">
                                 <label class="form-label">Status</label>

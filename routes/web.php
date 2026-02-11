@@ -52,3 +52,4 @@ Route::get('/work-status/trash', [WorkStatusController::class, 'trash'])->name('
 Route::get('/work-status/restore/{id}', [WorkStatusController::class, 'restore'])->name('work-status.restore');
 Route::get('/work-status/force-delete/{id}', [WorkStatusController::class, 'forceDelete'])->name('work-status.forceDelete');
 
+

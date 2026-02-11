@@ -22,16 +22,20 @@ class JobTypeController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'job_type_name' => 'required|max:100|unique:job_type_master',
-            'status' => 'required'
-        ]);
+$request->validate([
+    'job_type_code' => 'required|max:50|unique:job_type_master',
+    'job_type_name' => 'required|max:100',
+    'status' => 'required'
+]);
 
-        JobType::create([
-            'job_type_name' => $request->job_type_name,
-            'status' => $request->status,
-            'created_by' => 1
-        ]);
+JobType::create([
+    'job_type_code' => $request->job_type_code,
+    'job_type_name' => $request->job_type_name,
+    'description'   => $request->description,
+    'status'        => $request->status,
+    'created_by'    => 1
+]);
+
 
         return redirect()->route('job-type.index')
             ->with('success', 'Job Type added successfully');
@@ -45,18 +49,20 @@ class JobTypeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'job_type_name' => "required|max:100|unique:job_type_master,job_type_name,$id",
-            'status' => 'required'
-        ]);
+$request->validate([
+    'job_type_code' => "required|max:50|unique:job_type_master,job_type_code,$id",
+    'job_type_name' => 'required|max:100',
+    'status' => 'required'
+]);
 
-        $jobType = JobType::findOrFail($id);
+$jobType->update([
+    'job_type_code' => $request->job_type_code,
+    'job_type_name' => $request->job_type_name,
+    'description'   => $request->description,
+    'status'        => $request->status,
+    'updated_by'    => 1
+]);
 
-        $jobType->update([
-            'job_type_name' => $request->job_type_name,
-            'status' => $request->status,
-            'updated_by' => 1
-        ]);
 
         return redirect()->route('job-type.index')
             ->with('success', 'Job Type updated successfully');

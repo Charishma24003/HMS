@@ -16,13 +16,16 @@ class JobType extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id',
-        'job_type_name',
-        'status',
-        'display_order',
-        'created_by',
-        'updated_by'
-    ];
+    'id',
+    'job_type_code',     // NEW
+    'job_type_name',
+    'description',       // NEW
+    'status',
+    'display_order',
+    'created_by',
+    'updated_by'
+];
+
 
     protected static function boot()
     {

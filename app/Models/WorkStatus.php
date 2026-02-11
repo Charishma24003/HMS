@@ -16,13 +16,16 @@ class WorkStatus extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id',
-        'work_status_name',
-        'status',
-        'display_order',
-        'created_by',
-        'updated_by'
-    ];
+    'id',
+    'work_status_code',   // NEW
+    'work_status_name',
+    'description',        // NEW
+    'status',
+    'display_order',
+    'created_by',
+    'updated_by'
+];
+
 
     protected static function boot()
     {

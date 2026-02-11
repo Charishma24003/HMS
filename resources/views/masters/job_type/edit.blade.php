@@ -12,10 +12,22 @@
                 @csrf
 
                 <div class="mb-3">
-                    <label class="form-label">Job Type Name</label>
-                    <input type="text" name="job_type_name" class="form-control"
-                        value="{{ $jobType->job_type_name }}">
-                </div>
+    <label class="form-label">Job Type Code</label>
+    <input type="text" name="job_type_code" class="form-control"
+        value="{{ $jobType->job_type_code }}">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Job Type Name</label>
+    <input type="text" name="job_type_name" class="form-control"
+        value="{{ $jobType->job_type_name }}">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Description</label>
+    <textarea name="description" class="form-control">{{ $jobType->description }}</textarea>
+</div>
+
 
                 <div class="mb-3">
                     <label class="form-label">Status</label>

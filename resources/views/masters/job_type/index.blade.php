@@ -35,49 +35,63 @@
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Sl.No.</th>
-                                        <th>Job Type Name</th>
-                                        <th>Status</th>
-                                        <th class="text-end">Actions</th>
-                                    </tr>
-                                </thead>
+    <thead>
+        <tr>
+            <th>Sl.No.</th>
+            <th>Code</th>
+            <th>Job Type Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+        </tr>
+    </thead>
 
-                                <tbody>
-                                    @foreach($jobTypes as $index => $jobType)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $jobType->job_type_name }}</td>
+    <tbody>
+        @foreach($jobTypes as $index => $jobType)
+        <tr>
+            <td>{{ $index + 1 }}</td>
 
-                                        <td>
-                                            @if($jobType->status == 'Active')
-                                                <span class="badge bg-soft-success text-success">Active</span>
-                                            @else
-                                                <span class="badge bg-soft-danger text-danger">Inactive</span>
-                                            @endif
-                                        </td>
+            <td>
+                <span class="badge bg-soft-primary text-primary">
+                    {{ $jobType->job_type_code }}
+                </span>
+            </td>
 
-                                        <td class="text-end">
-                                            <div class="hstack gap-2 justify-content-end">
+            <td>{{ $jobType->job_type_name }}</td>
 
-                                                <a href="{{ route('job-type.edit', $jobType->id) }}"
-                                                   class="avatar-text avatar-md action-icon action-edit">
-                                                    <i class="feather-edit"></i>
-                                                </a>
+            <td>
+                {{ $jobType->description ?? '-' }}
+            </td>
 
-                                                <a href="{{ route('job-type.delete', $jobType->id) }}"
-                                                   class="avatar-text avatar-md action-icon action-delete">
-                                                    <i class="feather-trash-2"></i>
-                                                </a>
+            <td>
+                @if($jobType->status == 'Active')
+                    <span class="badge bg-soft-success text-success">Active</span>
+                @else
+                    <span class="badge bg-soft-danger text-danger">Inactive</span>
+                @endif
+            </td>
 
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
+            <td class="text-end">
+                <div class="hstack gap-2 justify-content-end">
 
-                            </table>
+                    <a href="{{ route('job-type.edit', $jobType->id) }}"
+                       class="avatar-text avatar-md action-icon action-edit">
+                        <i class="feather-edit"></i>
+                    </a>
+
+                    <a href="{{ route('job-type.delete', $jobType->id) }}"
+                       class="avatar-text avatar-md action-icon action-delete">
+                        <i class="feather-trash-2"></i>
+                    </a>
+
+                </div>
+            </td>
+
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
                         </div>
                     </div>
                 </div>

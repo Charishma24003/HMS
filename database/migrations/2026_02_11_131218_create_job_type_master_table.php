@@ -10,10 +10,12 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::create('job_type_master', function (Blueprint $table) {
+    {
+Schema::create('job_type_master', function (Blueprint $table) {
     $table->uuid('id')->primary();
-    $table->string('job_type_name', 100)->unique();
+    $table->string('job_type_code', 50)->unique();   // NEW
+    $table->string('job_type_name', 100);            // Already exists
+    $table->text('description')->nullable();         // NEW
     $table->enum('status', ['Active', 'Inactive'])->default('Active');
     $table->integer('display_order')->nullable();
     $table->string('created_by')->nullable();
@@ -21,6 +23,7 @@ return new class extends Migration
     $table->softDeletes();
     $table->timestamps();
 });
+
 
 }
 

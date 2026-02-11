@@ -13,7 +13,9 @@ return new class extends Migration
 {
 Schema::create('work_status_master', function (Blueprint $table) {
     $table->uuid('id')->primary();
-    $table->string('work_status_name', 100)->unique();
+    $table->string('work_status_code', 50)->unique();   // NEW
+    $table->string('work_status_name', 100);
+    $table->text('description')->nullable();            // NEW
     $table->enum('status', ['Active', 'Inactive'])->default('Active');
     $table->integer('display_order')->nullable();
     $table->string('created_by')->nullable();
@@ -21,6 +23,7 @@ Schema::create('work_status_master', function (Blueprint $table) {
     $table->softDeletes();
     $table->timestamps();
 });
+
 
 }
 

@@ -2016,7 +2016,7 @@
                 <div class="dropdown nxl-h-item nxl-header-language d-none d-sm-flex">
                     <a href="javascript:void(0);" class="nxl-head-link me-0 nxl-language-link" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside">
-                        <img src="assets/vendors/img/flags/4x3/us.svg" alt="" class="img-fluid wd-20" />
+                        <img src="assets/vendors/img/flags/1x1/in.svg" alt="" class="img-fluid wd-20" />
                     </a>
                     <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-language-dropdown">
                         <div class="dropdown-divider mt-0"></div>
