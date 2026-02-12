@@ -72,6 +72,7 @@ class WorkStatusController extends Controller
     }
 
 
+
     public function destroy($id)
     {
         $workStatus = WorkStatus::findOrFail($id);

@@ -72,6 +72,7 @@ class JobTypeController extends Controller
     }
 
 
+
     public function destroy($id)
     {
         $jobType = JobType::findOrFail($id);
