@@ -54,7 +54,7 @@ WorkStatus::create([
     'work_status_name' => 'required|max:100',
     'status' => 'required'
 ]);
-$workStatus = WorkStatus::findOrFail($id);
+
 $workStatus->update([
     'work_status_code' => $request->work_status_code,
     'work_status_name' => $request->work_status_name,
